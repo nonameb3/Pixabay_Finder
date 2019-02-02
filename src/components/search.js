@@ -1,15 +1,18 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { FindImage } from '../actions'
 import TextField from '@material-ui/core/TextField'
 import MenuItem from '@material-ui/core/MenuItem'
 
 export class search extends Component {
   state = {
-    name : '',
+    findName : '',
     select: '20'
   }
 
   onChange = value => e => {
     this.setState({ [value]: e.target.value })
+    this.props.FindImage(this.state.findName, this.state.select)
   }
 
   render() {
@@ -19,8 +22,8 @@ export class search extends Component {
           label="Search for image."
           type="search"
           style={{width:500}}
-          value={this.state.name}
-          onChange={this.onChange('name')}
+          value={this.state.findName}
+          onChange={this.onChange('findName')}
           margin="normal"
         />
         <br/>
@@ -34,7 +37,7 @@ export class search extends Component {
           helperText="Please select image limit."
           margin="normal"
         >
-          {munuSelect.map(option => (
+          {menuSelect.map(option => (
             <MenuItem key={option.value} value={option.value}>
               {option.value}
             </MenuItem>
@@ -45,11 +48,15 @@ export class search extends Component {
   }
 }
 
-const munuSelect = [
+const menuSelect = [
   {value: 10},
   {value: 20},
   {value: 30},
   {value: 50}
 ]
 
-export default search
+const mapStatetoProps = state => {
+  return { ImageList : state.ImageList }
+}
+
+export default connect(mapStatetoProps, { FindImage })(search) 

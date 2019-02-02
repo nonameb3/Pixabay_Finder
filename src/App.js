@@ -17,6 +17,7 @@ const App = () => {
       <Grid container justify = "center" spacing={0}>
         <Search/>
       </Grid>
+      <br/>
       <ShowImage/>
     </Provider>
   )

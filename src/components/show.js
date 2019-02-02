@@ -10,54 +10,34 @@ import Dialog from '@material-ui/core/Dialog'
 import Button from '@material-ui/core/Button'
 
 export class show extends Component {
-  componentDidUpdate(prevProps, prevState) {
-    // only update chart if the data has changed
-    if (prevProps.ImageList !== this.props.ImageList) {
-      console.log('update')
-    }
-  }
-
   renderList = () => {
-    return this.props.ImageList.map((img) => {
+    return this.props.ImageList.map((image) => {
       return(
-        <li>{img.user}</li>
-      );
-    });
+        <GridListTile key={image.id}>
+          <img src={image.largeImageURL} alt={image.id} />
+          <GridListTileBar
+            title={image.tags}
+            subtitle={
+              <span>
+                by <strong>{image.user}</strong>
+              </span>
+            }
+            actionIcon={
+              <Iconbutton>
+
+              </Iconbutton>
+            }
+          />
+        </GridListTile>
+      )
+    })
   }
 
   render() {
-    const { ImageList } = this.props
-    let imageRender = (<div>hoho</div>);
-
-    if( ImageList.length > 1){
-      imageRender = this.renderList()
-      // imageRender = (
-      //   <GridList cols={3}>
-      //     {ImageList.map(image => (
-      //     <GridListTile key={image.id}>
-      //       <img src={image.largeImageURL} alt={image.id} />
-      //       <GridListTileBar
-      //         title={image.tags}
-      //         subtitle={
-      //           <span>
-      //             by <strong>{image.user}</strong>
-      //           </span>
-      //         }
-      //         actionIcon={
-      //           <Iconbutton>
-
-      //           </Iconbutton>
-      //         }
-      //       />
-      //     </GridListTile>
-      //     ))}
-      //   </GridList>
-      // )
-    }
     return (
-      <div>
-        {imageRender}
-      </div>
+      <GridList cols={4}>
+        {this.renderList()}
+      </GridList>
     )
   }
 }

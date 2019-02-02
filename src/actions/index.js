@@ -15,3 +15,7 @@ export const FindImage = (q_value='car', p_value=20) => async dispatch => {
     payload: response.data
   })
 }
+
+export const Clear = () => {
+  return { type: 'clear'}
+}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { FindImage } from '../actions'
+import { FindImage, Clear } from '../actions'
 import TextField from '@material-ui/core/TextField'
 import MenuItem from '@material-ui/core/MenuItem'
 
@@ -10,9 +10,18 @@ export class search extends Component {
     select: '20'
   }
 
+  componentDidUpdate(preProps, preState){
+    if(this.state.findName === preState.findName) return
+    if(this.state.findName === ''){
+      this.props.Clear()
+      return
+    }
+    
+    this.props.FindImage(this.state.findName, this.state.select)
+  }
+
   onChange = value => e => {
     this.setState({ [value]: e.target.value })
-    this.props.FindImage(this.state.findName, this.state.select)
   }
 
   render() {
@@ -59,4 +68,4 @@ const mapStatetoProps = state => {
   return { ImageList : state.ImageList }
 }
 
-export default connect(mapStatetoProps, { FindImage })(search) 
+export default connect(mapStatetoProps, { FindImage, Clear })(search) 

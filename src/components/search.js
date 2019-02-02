@@ -11,12 +11,13 @@ export class search extends Component {
   }
 
   componentDidUpdate(preProps, preState){
-    if(this.state.findName === preState.findName) return
-    if(this.state.findName === ''){
+    const { findName, select } = this.state
+    if(findName === preState.findName && select === preState.select) return
+    if(findName === ''){
       this.props.Clear()
       return
     }
-    
+
     this.props.FindImage(this.state.findName, this.state.select)
   }
 
@@ -58,9 +59,9 @@ export class search extends Component {
 }
 
 const menuSelect = [
+  {value: 5},
   {value: 10},
   {value: 20},
-  {value: 30},
   {value: 50}
 ]
 

@@ -9,7 +9,7 @@ export class navbar extends Component {
     return (
       <div>
         <Appbar position="static" style={{backgroundColor:"#29b6f6"}}>
-          <Toolbar style={style.toolbar} > 
+          <Toolbar style={{justifyContent: 'space-between'}} > 
             <Typography variant="h6" color="inherit" >
               Photos
             </Typography>
@@ -18,13 +18,6 @@ export class navbar extends Component {
         </Appbar>
       </div>
     )
-  }
-}
-
-const style = {
-  toolbar: {
-    justifyContent: 'space-between',
-    alignItems: ''
   }
 }
 

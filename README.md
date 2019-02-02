@@ -1,7 +1,7 @@
 # Photo Finder - React Technology Web App Development 
 ## Basic && learning.
 <p align="center">
-    <img src="public/image/page.png" width="800" alt="finderApp">
+    <img src="image/page.png" width="800" alt="finderApp">
 </p>
 
 ## Technology
